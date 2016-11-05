@@ -90,54 +90,60 @@
         </div>
     </div>
     <script>
-        var oContainer = document.getElementById('container');
-        var oTag = document.getElementById('tag');
-        var aImg = document.getElementsByTagName('img');
-        var aLi = document.getElementsByTagName('li');
-        var oPrev = document.getElementById('prev');
-        var oNext = document.getElementById('next');
-        var oContent = document.getElementById('content');
+        window.onload=function() {
+            var oContainer = document.getElementById('container');
+            var oTag = document.getElementById('tag');
+            var aImg = document.getElementsByTagName('img');
+            var aLi = document.getElementsByTagName('li');
+            var oPrev = document.getElementById('prev');
+            var oNext = document.getElementById('next');
+            var oContent = document.getElementById('content');
 
-        var iNow=0;
-        var timer;
-        oContent.style.width = aImg[0].offsetWidth * aImg.length + 'px';
-        for(var i=0;i<aLi.length;i++){
-            aLi[i].index=i;
-            aLi[i].onmouseover = function(){
-                changImg(this.index);
-                 iNow= this.index;
+            var iNow = 0;
+            var timer;
+            oContent.style.width = aImg[0].offsetWidth * aImg.length + 'px';
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+                aLi[i].onmouseover = function () {
+                    changImg(this.index);
+                    iNow = this.index;
+//                return false;
+                };
+            }
+            function changImg(index) {
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].className = '';
+                }
+                aLi[index].className = 'selected';
+                oContent.style.left = -aImg[0].offsetWidth * index + 'px';
+
+            }
+
+            oPrev.onclick = function () {
+                iNow--;
+                if (iNow == -1) {
+                    iNow = iNow + aLi.length;
+                }
+                changImg(iNow);
+            };
+            oNext.onclick = function () {
+                iNow++;
+                iNow = iNow % aLi.length;
+                changImg(iNow);
+
+            };
+            timer = setInterval(function () {
+                oNext.onclick();
+            }, 1000)
+            oContainer.onmousemove = function () {
+                clearInterval(timer);
+            };
+            oContainer.onmouseout = function () {
+                timer = setInterval(function () {
+                    oNext.onclick();
+                }, 1000)
             };
         }
-        function changImg(index){
-            for(var i=0;i<aLi.length;i++){
-                aLi[i].className='';
-            }
-            aLi[index].className = 'selected';
-            oContent.style.left = -aImg[0].offsetWidth * index + 'px';
-        }
-        oPrev.onclick = function(){
-            iNow--;
-            if(iNow==-1){
-                iNow=iNow+aLi.length;
-            }
-            changImg(iNow);
-        };
-        oNext.onclick = function(){
-            iNow++;
-            iNow=iNow%aLi.length;
-            changImg(iNow);
-        };
-        timer = setInterval(function(){
-            oNext.onclick();
-        },2000)
-        oContainer.onmousemove = function(){
-            clearInterval(timer);
-        };
-        oContainer.onmouseout = function(){
-            timer = setInterval(function(){
-                oNext.onclick();
-            },2000)
-        };
     </script>
 </body>
 </html>

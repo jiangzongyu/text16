@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+    <html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>1-4</title>
+        <style>
+            #arg{
+                width: 100px;
+                height: 100px;
+                background: red;
+                position: absolute;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+    <div>hhhhhhhhh</div>
+        <div id="arg"></div>
+    <script>
+        var oDarg = document.getElementById('arg');
+        oDarg.onmousedown = function(e) {
+            e = e || window.event;
+            var aDisX = e.clientX - oDarg.offsetLeft;
+            var aDisY = e.clientY - oDarg.offsetTop;
+            document.onmousemove = function (e) {
+                e = e || window.event;
+                var left = e.clientX - aDisX;
+                var top = e.clientY - aDisY;
+                oDarg.style.left = left + 'px';
+                oDarg.style.top = top + 'px';
+                return false;
+            };
+        };
+        oDarg.onmouseup = function(){
+            document.onmousemove = null;
+
+        };
+
+    </script>
+    </body>
+</html>
