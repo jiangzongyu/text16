@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>1-5</title>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 300px;
+            height: 400px;
+            background: red;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #content{
+            width: 270px;
+            background: green;
+            /*overflow: hidden;*/
+            position: relative;
+        }
+        #scroll-bar{
+            width: 30px;
+            height: 400px;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            background: yellow;
+        }
+        #scroll-btn{
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            background: black;
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <div id="container">
+            <div id="content">11你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好22</div>
+            <div id="scroll-bar">
+                <span id="scroll-btn"></span>
+            </div>
+        </div>
+        <script>
+            var oScrollBtn = document.getElementById('scroll-btn');
+            var oScrollBar = document.getElementById('scroll-bar');
+            var oContent = document.getElementById('content');
+            var oContainer = document.getElementById('container');
+            oScrollBtn.onmousedown = function(e){
+                e = e|| window.event;
+                var oDisY = e.clientY - oScrollBtn.offsetTop;
+                document.onmousemove = function(e){
+                    e = e|| window.event;
+                   var top = e.clientY - oDisY;
+                    if(top < 0){
+                        top = 0;
+                    }else if(top > oScrollBar.offsetHeight - oScrollBtn.offsetHeight){
+                        top = oScrollBar.offsetHeight - oScrollBtn.offsetHeight;
+                    }
+                    oScrollBtn.style.top = top + 'px';
+                    var distentBtn = oScrollBtn.offsetTop/( oScrollBar.offsetHeight - oScrollBtn.offsetHeight);
+                    var distentContent = distentBtn*(oContent.offsetHeight - oContainer.offsetHeight);
+                    oContent.style.top = -distentContent + 'px';
+                    return false;
+                };
+            };
+            document.onmouseup = function(){
+                document.onmousemove = null;
+            };
+        </script>
+    </body>
+</html>

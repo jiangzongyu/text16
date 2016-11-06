@@ -4,6 +4,10 @@
         <meta charset="UTF-8">
         <title>1-4</title>
         <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
             #arg{
                 width: 100px;
                 height: 100px;
@@ -26,12 +30,24 @@
                 e = e || window.event;
                 var left = e.clientX - aDisX;
                 var top = e.clientY - aDisY;
+                if(left < 0){
+                    left = 0;
+                }else if(left > document.documentElement.clientWidth - oDarg.offsetWidth){
+                    left = document.documentElement.clientWidth - oDarg.offsetWidth;
+                }
+                if(top < 0){
+                    top = 0;
+                }else if(top > document.documentElement.clientHeight - oDarg.offsetHeight){
+                    top = document.documentElement.clientHeight - oDarg.offsetHeight;
+                }
                 oDarg.style.left = left + 'px';
                 oDarg.style.top = top + 'px';
+
                 return false;
             };
+
         };
-        oDarg.onmouseup = function(){
+        document.onmouseup = function(){
             document.onmousemove = null;
 
         };
