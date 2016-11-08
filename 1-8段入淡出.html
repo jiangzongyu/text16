@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>1-8</title>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width: 400px;
+            height: 300px;
+
+            position: relative;
+            margin: 100px auto;
+            
+        }
+        #main li{
+            float: left;
+            width: 100px;
+            height: 30px;
+            background: #cccccc;
+
+            margin-right: 5px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #main{
+            overflow: hidden;
+        }
+        #main .selected{
+            background: black;
+            color: white;
+        }
+        #content{
+            width: 400px;
+            height: 270px;
+            background: green;
+            border-top: 1px solid white;
+            position: relative;
+            /*position: absolute;*/
+            /*bottom: 0;*/
+        }
+        #content div{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <body>
+        <div id="container">
+            <ul id="tag">
+                <li class="selected">1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+            <div id="content">
+                <ul>
+                    <div class="selected">aaaaaaaaaaaaaa</div>
+                    <div>bbbbbbbbbbbbbbbbbbbbb</div>
+                    <div>cccccccccc</div>
+                </ul>
+            </div>
+
+            <script>
+                var  oTag = document.getElementById("tag");
+                var aLi = document.getElementsByTagName('li');
+                var oContent = document.getElementById('content');
+                var aDiv = oContent.getElementById('div');
+            </script>
+    </body>
+</html>

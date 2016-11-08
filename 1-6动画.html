@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+    <html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>1-6</title>
+    </head>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <body>
+        <button id="btn">onclik</button>
+        <div id="div1"></div>
+        <script src="jslib.js"></script>
+        <script>
+            var oBtn = document.getElementById('btn');
+            var oDiv = document.getElementById('div1');
+            oBtn.onclick = function(){
+                animate(oDiv,{
+                    width:200,
+                    height:200,
+//                    opacity:50
+                });
+            };
+        </script>
+    </body>
+</html>
